@@ -2,19 +2,19 @@
 
 void ft_fun_begin_here(int totalNumber)
 {
-	char text[12];
+	char text[10];
 	int	index = 1;
 	*text = '0';
-	
+	char virgule[2];
+	virgule[0] = ',';
+	virgule[1]=' ';
 	while (index < totalNumber)
 	{
 		text[index] = '0' + index;
 		index++;
 	}
-	text[totalNumber] = ',';
-	text[totalNumber + 1] = ' ';
 	
-	write(1, text, totalNumber+2);
+	write(1, text, totalNumber);
   
    while (text[0] != 58 - totalNumber)
    {
@@ -25,7 +25,8 @@ void ft_fun_begin_here(int totalNumber)
 	    text[index-1] = text[index - 2] + 1;
 	    ft_verify_max(text, index);
 	}
-	write(1, text, totalNumber+2);
+	write(1, virgule, 2);
+	write(1, text, totalNumber);
    }
 }
 
