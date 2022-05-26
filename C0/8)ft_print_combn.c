@@ -1,34 +1,50 @@
+#include <stdio.h>
 
-void ft_fun_begin_here(int nbr)
+void ft_fun_begin_here(int totalNumber, int start)
 {
-	int index = 0;
-	int timeRotating = 0;
-	char numberToShow[nbr+2];
+	char text[11];
+	int	index = 1;
+	*text = '0';
+	text[0] = start + '0';
 	
-	while(timeRotating < nbr)
+	while (index < totalNumber)
 	{
-    	while (index < nbr)
+		text[index] = text[index - 1] + 1;
+		index++;
+	}
+	text[totalNumber] = ',';
+	text[totalNumber + 1] = ' ';
+	
+	write(1, text, totalNumber+2);
+	
+	int lastNumber = index;
+	int actualIndex = index;
+	
+	while(actualIndex-1 > 0)
+	{
+	    while (lastNumber < 10)
 	    {
-	    	if(index == 0) numberToShow[0] = timeRotating + '0';
-	    	else numberToShow[index] = numberToShow[index-1] + 1;
-	        if(timeRotating+1 < nbr)
-	        {
-	            numberToShow[index+1] = ',';
-	            numberToShow[index+2] = ' ';
-	        }
-	        index++;
-    	}
-    	
-	   if(timeRotating+1 < nbr) write(1, numberToShow, nbr+2);
-	   else write(1, numberToShow, nbr);
-	   
-	    timeRotating ++;
-	    index = 0;
-    }
+	        text[actualIndex-1] = lastNumber + '0';
+    	    write(1, text, totalNumber+2);
+    	    lastNumber++;
+	    }
+	    lastNumber = text[actualIndex-2] + 2;
+	    text[actualIndex-2] = text[actualIndex-2] + 1;
+	}
 }
+
+
+
+
 void ft_print_combn(int n) 
 {
-    if (n > 1 && n < 10) ft_fun_begin_here(n);
+    if (n > 1 && n < 10)  ft_fun_begin_here(n,0);
     else if (n < 1) printf("Error, number too much small");
     else if (n > 9) printf("Error, number too much big");
+}
+
+int main()
+{
+    ft_print_combn(3);
+  return 0;
 }
