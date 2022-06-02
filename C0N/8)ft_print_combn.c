@@ -12,11 +12,9 @@ void ft_fun_begin_here(int totalNumber)
 	{
 		text[index] = '0' + index;
 		index++;
-	}
-	
-	write(1, text, totalNumber);
-  
-   while (text[0] != 58 - totalNumber)
+	}	
+	write(1, text, totalNumber);  
+   while (text[0] != 58 - totalNumber)   
    {
     text[index-1] += 1;
 	if (text[index-1] >= '0'+10) 
